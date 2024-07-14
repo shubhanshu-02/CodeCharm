@@ -1,3 +1,4 @@
+import 'package:code_charm/components/centered_view.dart';
 import 'package:code_charm/components/Paragraph.dart';
 import 'package:code_charm/constants/custom_appbar.dart';
 import 'package:flutter/material.dart';
@@ -31,78 +32,128 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top:10, bottom: 20.0, left: 10,right: 10),
+      padding: const EdgeInsets.all(16.0),
       child: Scaffold(
-        appBar: customAppBar(
-          title: 'Product Page'),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: ResponsiveBuilder(
-            builder: (context, sizingInformation) {
-              bool isDesktop =
-                  sizingInformation.deviceScreenType == DeviceScreenType.desktop;
+        appBar: customAppBar(title: 'Product Page'),
+        body: CenteredView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+            child: ResponsiveBuilder(
+              builder: (context, sizingInformation) {
+                bool isDesktop = sizingInformation.deviceScreenType == DeviceScreenType.desktop;
       
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  isDesktop
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 250,
-                              height: 400,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),
-                              ),
-                              child: Image.asset(productImage, fit: BoxFit.cover),
-                            ),
-                            const SizedBox(width: 20),
-                            Paragraph(
-                              heading: productName,
-                              details: productDetail,
-                            ),
-                          ],
-                        )
-                      : Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Column(
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    isDesktop
+                        ? Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
                                 width: 300,
-                                height: 300,
+                                height: 450,
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black),
                                 ),
                                 child: Image.asset(productImage, fit: BoxFit.cover),
                               ),
-                              SizedBox(height: 20),
-                              Paragraph(
-                                heading: productName,
-                                details: productDetail,
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Paragraph(
+                                      heading: productName,
+                                      details: productDetail,
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () => _launchUrl(googlePlayLink),
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                                          ),
+                                          child: const Text("Google Play link"),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        ElevatedButton(
+                                          onPressed: () => _launchUrl(figmaLink),
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                                          ),
+                                          child: const Text("Figma Play link"),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 200,
+                                height: 250,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black),
+                                ),
+                                child: Image.asset(productImage, fit: BoxFit.cover),
+                              ),
+                              const SizedBox(height: 20),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                child: Column(
+                                  children: [
+                                    Paragraph(
+                                      heading: productName,
+                                      details: productDetail,
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () => _launchUrl(googlePlayLink),
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                                          ),
+                                          child: const Text("Google Play link"),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        ElevatedButton(
+                                          onPressed: () => _launchUrl(figmaLink),
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                                          ),
+                                          child: const Text("Figma Play link"),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                      ),
-                  SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () => _launchUrl(googlePlayLink),
-                        child: Text("Google Play link"),
-                      ),
-                      SizedBox(width: 20),
-                      ElevatedButton(
-                        onPressed: () => _launchUrl(figmaLink),
-                        child: Text("Figma Play link"),
-                      ),
-                    ],
-                  ),
-                ],
-              );
-            },
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

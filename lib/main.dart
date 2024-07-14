@@ -1,15 +1,14 @@
-import 'package:code_charm/screens/services_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/HomeScreen/home_screen.dart';
 
 void main() {
-    // Ensure to initialize WidgetsBinding
-  // WidgetsFlutterBinding.ensureInitialized();
-  // // Initialize WebView for Android
-  // if (WebView.platform == null) {
-  //   WebView.platform = SurfaceAndroidWebView();
-  // }
 
+// WidgetsFlutterBinding.ensureInitialized();
+
+//   // Initialize the webview platform for Android
+//   if (WebViewPlatform.instance == null) {
+//     WebViewPlatform.instance = SurfaceAndroidWebView();
+//   }
 
   runApp(const MyApp());
 }

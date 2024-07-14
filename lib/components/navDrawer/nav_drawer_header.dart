@@ -9,7 +9,7 @@ class NavDrawerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 150,
-      color: Colors.blue, // replace with your primaryColor
+      color: primaryColor,
       alignment: Alignment.center,
       child: const Column(
         mainAxisSize: MainAxisSize.min,

@@ -37,7 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   responsive_builder: ^0.7.1
   google_maps_flutter: ^2.7.0
-  webview_flutter: ^4.0.4  
+  webview_flutter: ^4.8.0  
+  webview_flutter_android: ^3.0.0
   http: ^0.13.6
   html: ^0.15.0
   url_launcher: ^6.3.0
@@ -72,11 +73,12 @@ flutter:
     - assets/2.jpg
     - assets/3.png
     - assets/4.png
+    - assets/map.png
     - assets/s1.png
     - assets/s2.png
     - assets/s3.png
-    - assets/t.png
     - assets/sakral.png
+    - assets/t.png
     - assets/track-bg.jpg
   #   - images/a_dot_ham.jpeg
 
