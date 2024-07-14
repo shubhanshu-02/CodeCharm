@@ -1,5 +1,6 @@
 import 'package:code_charm/components/logo.dart';
 import 'package:code_charm/components/NavBar/nav_bar_item.dart';
+import 'package:code_charm/screens/clients_screen.dart';
 import 'package:code_charm/screens/contact_screen.dart';
 import 'package:code_charm/screens/product_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class NavBarDesktop extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 25),
-              NavBarItem(title: "Clients"),
+              NavBarItem(title: "Clients",targetScreen: ClientsScreen(),),
               SizedBox(width: 25),
               NavBarItem(title: "Team"),
               SizedBox(width: 25),
