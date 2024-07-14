@@ -26,17 +26,19 @@ class _NavBarItemState extends State<NavBarItem> {
       child: MouseRegion(
         onEnter: (event) => _onHover(true),
         onExit: (event) => _onHover(false),
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           decoration: BoxDecoration(
-            color: isHovered ? Colors.grey[300] : Colors.transparent,
+            color: isHovered ? Colors.white : Colors.indigo[100],
             borderRadius: BorderRadius.circular(30),
           ),
           child: Text(
             widget.title,
             style: TextStyle(
-              fontSize: 18,
-              color: isHovered ? Colors.blue : Colors.black,
+              fontFamily: "ProductSans",
+              fontSize: 20,
+              color: isHovered ? Colors.indigo[600] : Colors.black,
               fontWeight: isHovered ? FontWeight.bold : FontWeight.normal,
             ),
           ),

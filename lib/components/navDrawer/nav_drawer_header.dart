@@ -1,3 +1,4 @@
+
 import 'package:code_charm/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class NavDrawerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 150,
-      color: primaryColor,
+      color: Colors.blue, // replace with your primaryColor
       alignment: Alignment.center,
       child: const Column(
         mainAxisSize: MainAxisSize.min,

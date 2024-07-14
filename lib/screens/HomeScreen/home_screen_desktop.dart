@@ -8,26 +8,30 @@ class HomeScreenDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children:  [
-        Paragraph(),
-        Expanded(
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Explore our',
-                  style: TextStyle(
-                  fontWeight: FontWeight.w400, height: 0.9, fontSize: 50),
-                ),
-                SizedBox(height: 30), // Adds space between the text and button
-                MyButton(title: 'Services',targetScreen: ServicesScreen(),),
-              ],
+    return const Padding(
+      padding:  EdgeInsets.only(left: 60.0),
+      child: Row(
+        children:  [
+          Paragraph(heading: "WHO WE ARE", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",),
+          Expanded(
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Explore our',
+                    style: TextStyle(
+                    fontWeight: FontWeight.w400, height: 0.9, fontSize: 50),
+                  ),
+                  SizedBox(height: 30), // Adds space between the text and button
+                  MyButton(title: 'Services',targetScreen: ServicesScreen(),),
+                ],
+              ),
             ),
           ),
-        )
-      ],
+        
+        ],
+      ),
     );
   }
 }

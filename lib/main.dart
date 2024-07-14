@@ -1,14 +1,23 @@
+import 'package:code_charm/screens/services_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/HomeScreen/home_screen.dart';
 
 void main() {
+    // Ensure to initialize WidgetsBinding
+  // WidgetsFlutterBinding.ensureInitialized();
+  // // Initialize WebView for Android
+  // if (WebView.platform == null) {
+  //   WebView.platform = SurfaceAndroidWebView();
+  // }
+
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,

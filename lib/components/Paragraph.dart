@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class Paragraph extends StatelessWidget {
-  const Paragraph({super.key});
+  final String heading;
+  final String details;
+
+  const Paragraph({super.key,required this.heading, required this.details});
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +34,18 @@ class Paragraph extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'WHO WE ARE',
+              heading,
               style: TextStyle(
-                  fontWeight: FontWeight.w800, height: 0.9, fontSize: titleSize),
+                  fontWeight: FontWeight.w800,
+                  height: 0.9,
+                  fontSize: titleSize),
               textAlign: textAlignment,
             ),
             const SizedBox(
               height: 30,
             ),
             Text(
-              'In this course we will go over the basics of using Flutter Web for website development. Topics will include Responsive Layout, Deploying, Font Changes, Hover Functionality, Modals and more.',
+              details,
               style: TextStyle(fontSize: descriptionSize, height: 1.7),
               textAlign: textAlignment,
             ),

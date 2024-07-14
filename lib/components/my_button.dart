@@ -52,7 +52,7 @@ class _MyButtonDesktopState extends State<MyButtonDesktop> {
           decoration: BoxDecoration(
             gradient: isHovered
                 ? const LinearGradient(colors: [Colors.blue, Colors.green])
-                : const LinearGradient(colors: [const Color.fromRGBO(26, 35, 126, 1), const Color.fromRGBO(121, 134, 203, 1)]),
+                : const LinearGradient(colors: [ Color.fromRGBO(26, 35, 126, 1), Color.fromRGBO(121, 134, 203, 1)]),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(

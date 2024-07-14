@@ -12,7 +12,7 @@ class HomeScreenMobile extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Paragraph(),  
+        Paragraph(heading: "who we are", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",),  
         SizedBox(height: 100,),
         MyButton(title: 'Explore our Services',targetScreen: ServicesScreen()),
       ],

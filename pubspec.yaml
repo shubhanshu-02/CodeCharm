@@ -37,7 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.6
   responsive_builder: ^0.7.1
   google_maps_flutter: ^2.7.0
-  webview_flutter: ^4.0.4
+  webview_flutter: ^4.0.4  
+  http: ^0.13.6
+  html: ^0.15.0
+  url_launcher: ^6.3.0
+
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +68,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logo.png
+    - assets/1.jpg
+    - assets/2.jpg
+    - assets/3.png
+    - assets/4.png
+    - assets/s1.png
+    - assets/s2.png
+    - assets/s3.png
+    - assets/t.png
+    - assets/sakral.png
+    - assets/track-bg.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
