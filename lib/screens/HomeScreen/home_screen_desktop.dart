@@ -1,4 +1,5 @@
 import 'package:code_charm/components/Paragraph.dart';
+import 'package:code_charm/components/chat_bot_widget.dart';
 import 'package:code_charm/components/my_button.dart';
 import 'package:code_charm/screens/services_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +10,14 @@ class HomeScreenDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding:  EdgeInsets.only(left: 60.0),
+      padding: EdgeInsets.only(left: 60.0),
       child: Row(
-        children:  [
-          Paragraph(heading: "WHO WE ARE", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",),
+        children: [
+          Paragraph(
+            heading: "WHO WE ARE",
+            details:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",
+          ),
           Expanded(
             child: Center(
               child: Column(
@@ -20,16 +25,22 @@ class HomeScreenDesktop extends StatelessWidget {
                 children: [
                   Text(
                     'Explore our',
-                    style: TextStyle(fontFamily: "ProductSans",
-                    fontWeight: FontWeight.w400, height: 0.9, fontSize: 50),
+                    style: TextStyle(
+                        fontFamily: "ProductSans",
+                        fontWeight: FontWeight.w400,
+                        height: 0.9,
+                        fontSize: 50),
                   ),
-                  SizedBox(height: 30), // Adds space between the text and button
-                  MyButton(title: 'Services',targetScreen: ServicesScreen(),),
+                  SizedBox(
+                      height: 30), // Adds space between the text and button
+                  MyButton(
+                    title: 'Services',
+                    targetScreen: ServicesScreen(),
+                  ),
                 ],
               ),
             ),
           ),
-        
         ],
       ),
     );

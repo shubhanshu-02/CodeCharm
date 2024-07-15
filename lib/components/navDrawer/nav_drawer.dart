@@ -1,9 +1,13 @@
-import 'package:code_charm/components/navDrawer/drawer_item.dart';
 import 'package:code_charm/components/navDrawer/nav_drawer_header.dart';
+import 'package:code_charm/components/navDrawer/nav_drawer_item.dart';
+import 'package:code_charm/screens/clients_screen.dart';
+import 'package:code_charm/screens/contact_screen.dart';
+import 'package:code_charm/screens/product_screen.dart';
+import 'package:code_charm/screens/team_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavDrawer extends StatelessWidget {
-  const NavDrawer({super.key});
+  const NavDrawer ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,14 +15,31 @@ class NavDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: const [
-          NavDrawerHeader(),
-          DrawerItem(title: 'Episodes', icon: Icons.videocam),
-          DrawerItem(title: 'About', icon: Icons.help),
+           NavDrawerHeader(),
+          NavDrawerItem(
+            title: 'Products',
+            targetScreen: const ProductScreen(
+              productImage: 'assets/sakral.png',
+              productDetail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",
+              productName: 'Sakral Associates',
+              googlePlayLink: 'https://play.google.com/store/apps/details?id=com.tanxe.sakral_ca&hl=en',
+              figmaLink: 'https://www.figma.com/',
+            ),
+          ),
+          NavDrawerItem(
+            title: 'Clients',
+            targetScreen: ClientsScreen(),
+          ),
+          NavDrawerItem(
+            title: 'Team',
+            targetScreen: TeamScreen(),
+          ),
+          NavDrawerItem(
+            title: 'Contact us',
+            targetScreen: ContactScreen(),
+          ),
         ],
       ),
     );
   }
 }
-
-
-

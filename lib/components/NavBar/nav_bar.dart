@@ -1,6 +1,5 @@
 import 'package:code_charm/components/NavBar/nav_bar_desktop.dart';
 import 'package:code_charm/components/NavBar/nav_bar_mobile.dart';
-import 'package:code_charm/components/navDrawer/nav_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -22,7 +21,7 @@ class NavBar extends StatelessWidget {
             return const NavBarDesktop();
           } 
           else {
-            return const NavBarMobile(drawer: NavDrawer(),);
+            return const NavBarMobile();
           }
         }),
       ),

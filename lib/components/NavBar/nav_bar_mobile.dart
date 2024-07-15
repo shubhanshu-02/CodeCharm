@@ -2,8 +2,8 @@ import 'package:code_charm/components/logo.dart';
 import 'package:flutter/material.dart';
 
 class NavBarMobile extends StatelessWidget {
-  final Widget drawer;
-  const NavBarMobile({super.key,required this.drawer});
+  
+  const NavBarMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,3 +29,4 @@ class NavBarMobile extends StatelessWidget {
     );
   }
 }
+

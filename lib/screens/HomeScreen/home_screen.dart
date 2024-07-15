@@ -1,5 +1,6 @@
 import 'package:code_charm/components/centered_view.dart';
 import 'package:code_charm/components/NavBar/nav_bar.dart';
+import 'package:code_charm/components/navDrawer/nav_drawer.dart';
 import 'package:code_charm/screens/HomeScreen/home_screen_desktop.dart';
 import 'package:code_charm/screens/HomeScreen/home_screen_mobile.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const NavDrawer(),
       body: CenteredView(
         child: Column(
           children: [
