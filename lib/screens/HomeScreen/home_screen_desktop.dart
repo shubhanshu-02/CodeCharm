@@ -20,7 +20,7 @@ class HomeScreenDesktop extends StatelessWidget {
                 children: [
                   Text(
                     'Explore our',
-                    style: TextStyle(
+                    style: TextStyle(fontFamily: "ProductSans",
                     fontWeight: FontWeight.w400, height: 0.9, fontSize: 50),
                   ),
                   SizedBox(height: 30), // Adds space between the text and button
