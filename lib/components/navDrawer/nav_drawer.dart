@@ -15,7 +15,8 @@ class NavDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: const [
-           NavDrawerHeader(),
+          NavDrawerHeader(),
+          SizedBox(height: 5),
           NavDrawerItem(
             title: 'Products',
             targetScreen: const ProductScreen(
@@ -26,14 +27,17 @@ class NavDrawer extends StatelessWidget {
               figmaLink: 'https://www.figma.com/',
             ),
           ),
+          SizedBox(height: 5),
           NavDrawerItem(
             title: 'Clients',
             targetScreen: ClientsScreen(),
           ),
+          SizedBox(height: 5),
           NavDrawerItem(
             title: 'Team',
             targetScreen: TeamScreen(),
           ),
+          SizedBox(height: 5),
           NavDrawerItem(
             title: 'Contact us',
             targetScreen: ContactScreen(),

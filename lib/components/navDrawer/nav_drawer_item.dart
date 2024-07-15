@@ -13,7 +13,7 @@ class NavDrawerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
+      title: Text(title, style:const TextStyle(fontFamily: "ProductSans",fontSize: 22)),
       onTap: () {
         Navigator.push(
           context,
