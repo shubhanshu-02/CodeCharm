@@ -6,9 +6,9 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 70,
-      width: 150,
-      child: Image.asset("assets/logo.png")
+      height: 100,
+      width: 300,
+      child: Image.asset("assets/code_charm_logo.png")
     );
   }
 }

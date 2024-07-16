@@ -23,6 +23,7 @@ class NavBarMobile extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(width: 40,),
           const Logo(),
         ],
       ),
