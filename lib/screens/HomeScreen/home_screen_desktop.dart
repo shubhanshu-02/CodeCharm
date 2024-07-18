@@ -1,5 +1,5 @@
 import 'package:code_charm/components/Paragraph.dart';
-import 'package:code_charm/components/chat_bot_widget.dart';
+// import 'package:code_charm/components/chat_bot_widget.dart';
 import 'package:code_charm/components/my_button.dart';
 import 'package:code_charm/screens/services_screen.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +41,7 @@ class HomeScreenDesktop extends StatelessWidget {
               ),
             ),
           ),
+      // ChatBotWidget(),
         ],
       ),
     );
