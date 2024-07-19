@@ -1,6 +1,7 @@
 import 'package:code_charm/components/custom_appbar.dart';
+import 'package:code_charm/constants/colors.dart';
 import 'package:flutter/material.dart';
-// import 'package:webview_flutter/webview_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -10,22 +11,22 @@ class ContactScreen extends StatefulWidget {
 }
 
 class _ContactScreenState extends State<ContactScreen> {
-  // late final WebViewController _controller;
+  late GoogleMapController mapController;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _controller = WebViewController()
-  //     ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  //     ..loadRequest(Uri.parse('https://maps.app.goo.gl/hBM8eMFcqwLjVyo6A'));
-  // }
+  final LatLng _center = const LatLng(28.63065507199661, 77.37213879843372);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Scaffold(
-        appBar: customAppBar(title: 'Contact Us',),
+        appBar: customAppBar(
+          title: 'Contact Us',
+        ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -39,11 +40,19 @@ class _ContactScreenState extends State<ContactScreen> {
                         flex: 1,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
-                          child: Image.asset(
-                            "assets/map.png",
-                            height: 550, // Adjust the height as needed
-                            width: 450,  // Adjust the width as needed
-                            fit: BoxFit.cover,
+                          child: GoogleMap(
+                            onMapCreated: _onMapCreated,
+                            initialCameraPosition: CameraPosition(
+                              target: _center,
+                              zoom: 15,
+                            ),
+                            markers: {
+                              const Marker(
+                                markerId: MarkerId('marker_1'),
+                                position: LatLng(28.63065507199661,
+                                    77.37213879843372), // Coordinates from the provided URL
+                              ),
+                            },
                           ),
                         ),
                       ),
@@ -55,7 +64,14 @@ class _ContactScreenState extends State<ContactScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              const Text("Form", textAlign: TextAlign.center, style: TextStyle(fontFamily: "ProductSans", fontSize: 24),),
+                              const Text(
+                                "Form",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: "ProductSans",
+                                  fontSize: 24,
+                                ),
+                              ),
                               const SizedBox(height: 26),
                               const TextField(
                                 decoration: InputDecoration(
@@ -74,14 +90,24 @@ class _ContactScreenState extends State<ContactScreen> {
                                   labelText: 'Phone',
                                 ),
                               ),
-                              const SizedBox(height: 40),
+                              const SizedBox(height: 60),
                               Padding(
-                                padding: const EdgeInsets.only(left: 160.0),
+                                padding: const EdgeInsets.only(left: 350.0,),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     // Submit contact form
                                   },
-                                  child: const Text('Submit'),
+                                  style: ElevatedButton.styleFrom(
+                                    minimumSize: Size(200, 60),
+                                    foregroundColor: Colors.white, backgroundColor: primaryColor, // Text color
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 40, vertical: 20),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    elevation: 5, // Elevation
+                                  ),
+                                  child: const Text('Submit',style: TextStyle(fontFamily: "ProductSans",fontSize: 22),),
                                 ),
                               ),
                             ],
