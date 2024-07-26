@@ -42,6 +42,10 @@ dependencies:
   http: ^0.13.6
   html: ^0.15.0
   url_launcher: ^6.3.0
+  flutter_dotenv: ^5.1.0
+  firebase_core: ^3.2.0
+  cloud_firestore: ^5.1.0
+  firebase_auth: ^5.1.2
 
 
 dev_dependencies:
@@ -68,6 +72,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets/logo.png
     - assets/1.jpg
     - assets/2.jpg
@@ -78,7 +83,6 @@ flutter:
     - assets/s2.png
     - assets/s3.png
     - assets/sakral.png
-    - assets/t.png
     - assets/track-bg.jpg
     - assets/code_charm.png
     - assets/code_charm_logo.png

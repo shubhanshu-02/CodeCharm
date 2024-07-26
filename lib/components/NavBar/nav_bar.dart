@@ -1,5 +1,6 @@
 import 'package:code_charm/components/NavBar/nav_bar_desktop.dart';
 import 'package:code_charm/components/NavBar/nav_bar_mobile.dart';
+import 'package:code_charm/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -12,7 +13,7 @@ class NavBar extends StatelessWidget {
       
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: const Color.fromARGB(255, 197, 202, 233), 
+        color: navColor, 
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

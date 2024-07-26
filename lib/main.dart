@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'screens/HomeScreen/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
 
-// WidgetsFlutterBinding.ensureInitialized();
-
-//   // Initialize the webview platform for Android
-//   if (WebViewPlatform.instance == null) {
-//     WebViewPlatform.instance = SurfaceAndroidWebView();
-//   }
-
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'Open Sans',
                 )),
 
-      home: const HomeScreen(),
+      home:  const HomeScreen(),
     );
   }
 }

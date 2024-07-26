@@ -1,4 +1,5 @@
 import 'package:code_charm/components/custom_appbar.dart';
+import 'package:code_charm/components/custom_card.dart';
 import 'package:flutter/material.dart';
 
 class ClientsScreen extends StatelessWidget {
@@ -6,33 +7,44 @@ class ClientsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Scaffold(
+    return Scaffold(
         appBar: customAppBar(title: 'Clients We Have Worked With'),
-        body: Padding(
-          padding: const EdgeInsets.all(26.0),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              childAspectRatio: 2 / 1,
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
-            ),
-            itemCount: 8,
-            itemBuilder: (context, index) {
-              return Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Center(
-                    child: Image.asset("assets/s1.png"),
+        body: const Padding(
+          padding:  EdgeInsets.all(26.0),
+          child: SingleChildScrollView(
+            child: Center(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                   SizedBox(
+                    height: 350.0, 
+                    width: 300.0, 
+                    child: CustomCard(
+                      image: 'assets/s1.png',
+                      title: 'Client 1',
+                      subtitle: 'Project 1',
+                      buttonText: 'project link',
+                      url: 'https://www.google.com/',
+                    ),
                   ),
-                ),
-              );
-            },
+                  
+                   SizedBox(width: 15.0), // Add spacing between cards
+                  
+                   SizedBox(
+                    height: 350,
+                    width: 300.0, // Set the desired width
+                    child: CustomCard(
+                      image: 'assets/4.png',
+                      title: 'Client 2',
+                      subtitle: 'Project 2',
+                      url: 'https://www.gmail.com/',
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
     );
   }
 }

@@ -6,9 +6,7 @@ class TeamScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Scaffold(
+    return Scaffold(
         appBar: customAppBar(title: 'Team Members'),
         body: Padding(
           padding: const EdgeInsets.all(26.0),
@@ -24,7 +22,7 @@ class TeamScreen extends StatelessWidget {
                   _buildTeamMember('assets/3.png', 'Lakshya', 'Backend'),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               //   children: [
@@ -36,7 +34,6 @@ class TeamScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 
@@ -60,10 +57,10 @@ class TeamScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Text(
                 name,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),

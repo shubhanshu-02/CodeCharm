@@ -16,7 +16,8 @@ AppBar customAppBar({
     elevation: elevation,
     centerTitle: centerTitle,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(8),
     ),
+    // toolbarHeight: 1250,
   );
 }

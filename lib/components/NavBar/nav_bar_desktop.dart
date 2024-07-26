@@ -2,7 +2,7 @@ import 'package:code_charm/components/logo.dart';
 import 'package:code_charm/components/NavBar/nav_bar_item.dart';
 import 'package:code_charm/screens/clients_screen.dart';
 import 'package:code_charm/screens/contact_screen.dart';
-import 'package:code_charm/screens/product_screen.dart';
+import 'package:code_charm/screens/ProductScreen/product_screen.dart';
 import 'package:code_charm/screens/team_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class NavBarDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return  const SizedBox(
       height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -20,7 +20,7 @@ class NavBarDesktop extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              NavBarItem(
+             NavBarItem(
                 title: "Products",
                 targetScreen: ProductScreen(
                   productImage: 'assets/sakral.png',

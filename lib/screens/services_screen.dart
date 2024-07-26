@@ -52,7 +52,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
       }
     }
   }
-
+  
   Widget _buildServiceCard(String imagePath, double scale, String url, int index) {
       bool isFocused = (_currentPage == index);
     

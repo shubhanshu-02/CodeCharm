@@ -1,7 +1,8 @@
-import 'package:code_charm/components/custom_appbar.dart';
-import 'package:code_charm/constants/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:code_charm/components/custom_appbar.dart';
+import 'package:code_charm/constants/colors.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -15,15 +16,51 @@ class _ContactScreenState extends State<ContactScreen> {
 
   final LatLng _center = const LatLng(28.63065507199661, 77.37213879843372);
 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
 
+  Future<void> _submitContactForm() async {
+    String email = _emailController.text;
+    String name = _nameController.text;
+    String phone = _phoneController.text;
+
+    if (email.isEmpty || name.isEmpty || phone.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill out all fields')),
+      );
+      return;
+    }
+
+    try {
+      await FirebaseFirestore.instance.collection('contacts').add({
+        'email': email,
+        'name': name,
+        'phone': phone,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Contact information submitted successfully')),
+      );
+
+      _emailController.clear();
+      _nameController.clear();
+      _phoneController.clear();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to submit contact information')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Scaffold(
+    return Scaffold(
         appBar: customAppBar(
           title: 'Contact Us',
         ),
@@ -49,8 +86,7 @@ class _ContactScreenState extends State<ContactScreen> {
                             markers: {
                               const Marker(
                                 markerId: MarkerId('marker_1'),
-                                position: LatLng(28.63065507199661,
-                                    77.37213879843372), // Coordinates from the provided URL
+                                position: LatLng(28.63065507199661, 77.37213879843372),
                               ),
                             },
                           ),
@@ -73,20 +109,23 @@ class _ContactScreenState extends State<ContactScreen> {
                                 ),
                               ),
                               const SizedBox(height: 26),
-                              const TextField(
-                                decoration: InputDecoration(
+                              TextField(
+                                controller: _emailController,
+                                decoration: const InputDecoration(
                                   labelText: 'Email',
                                 ),
                               ),
                               const SizedBox(height: 20),
-                              const TextField(
-                                decoration: InputDecoration(
+                              TextField(
+                                controller: _nameController,
+                                decoration: const InputDecoration(
                                   labelText: 'Name',
                                 ),
                               ),
                               const SizedBox(height: 20),
-                              const TextField(
-                                decoration: InputDecoration(
+                              TextField(
+                                controller: _phoneController,
+                                decoration: const InputDecoration(
                                   labelText: 'Phone',
                                 ),
                               ),
@@ -94,20 +133,25 @@ class _ContactScreenState extends State<ContactScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 350.0,),
                                 child: ElevatedButton(
-                                  onPressed: () {
-                                    // Submit contact form
-                                  },
+                                  onPressed: _submitContactForm,
                                   style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(200, 60),
-                                    foregroundColor: Colors.white, backgroundColor: primaryColor, // Text color
+                                    minimumSize: const Size(200, 60),
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: primaryColor,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 40, vertical: 20),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
-                                    elevation: 5, // Elevation
+                                    elevation: 5,
                                   ),
-                                  child: const Text('Submit',style: TextStyle(fontFamily: "ProductSans",fontSize: 22),),
+                                  child: const Text(
+                                    'Submit',
+                                    style: TextStyle(
+                                      fontFamily: "ProductSans",
+                                      fontSize: 22,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -121,7 +165,6 @@ class _ContactScreenState extends State<ContactScreen> {
             ],
           ),
         ),
-      ),
     );
   }
 }
