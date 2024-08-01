@@ -3,7 +3,6 @@ firebase.json
 .firebaserc
 .firebase
 firebase_options.dart
-index.html
 
 # Miscellaneous
 *.class
@@ -50,3 +49,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+web/index.html
