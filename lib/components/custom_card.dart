@@ -27,13 +27,14 @@ class CustomCard extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     return Card(
       elevation: 8,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      color: Colors.white,
+      color: primaryColor,
+      
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -54,7 +55,7 @@ class CustomCard extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     fontSize: 20,
-                    color: Colors.black87,
+                    color: Colors.white,
                   ),
                   // textAlign: TextAlign.center,
                 ),
@@ -63,7 +64,7 @@ class CustomCard extends StatelessWidget {
                   subtitle,
                   style:const TextStyle(
                     fontSize: 14,
-                    color: Colors.black54,
+                    color: Color.fromARGB(187, 255, 255, 255),
                   ),
                   textAlign: TextAlign.center,
                 ),

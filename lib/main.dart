@@ -1,8 +1,7 @@
+import 'package:code_charm/screens/new_home_screen.dart';
 import 'package:flutter/material.dart';
-import 'screens/HomeScreen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,22 +11,21 @@ void main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
+  // final GlobalKey a;
   const MyApp({super.key});
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Code Charm',
-        theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: Theme.of(context).textTheme.apply(
-                  fontFamily: 'Open Sans',
-                )),
-
-      home:  const HomeScreen(),
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+          textTheme: Theme.of(context).textTheme.apply(
+                fontFamily: 'Open Sans',
+              )),
+              home: const NewHomeScreen(),
     );
   }
 }

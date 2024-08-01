@@ -36,7 +36,9 @@ class Paragraph extends StatelessWidget {
             Text(
               heading,
               style: TextStyle(
+                  color: Colors.white,
                   fontWeight: FontWeight.w800,
+                  
                   height: 0.9,
                   fontSize: titleSize),
               textAlign: textAlignment,
@@ -46,7 +48,7 @@ class Paragraph extends StatelessWidget {
             ),
             Text(
               details,
-              style: TextStyle(fontSize: descriptionSize, height: 1.7),
+              style: TextStyle(color: Colors.white70, fontFamily: "Charter",fontSize: descriptionSize, height: 1.7),
               textAlign: textAlignment,
             ),
           ],

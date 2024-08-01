@@ -1,4 +1,5 @@
 import 'package:code_charm/components/Paragraph.dart';
+import 'package:code_charm/components/linkedin_button.dart';
 // import 'package:code_charm/components/chat_bot_widget.dart';
 import 'package:code_charm/components/my_button.dart';
 import 'package:code_charm/screens/services_screen.dart';
@@ -9,9 +10,10 @@ class HomeScreenDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(left: 60.0),
-      child: Row(
+    return Container(
+      height: 600,
+      padding: const EdgeInsets.only(left: 60.0),
+      child: const Row(
         children: [
           Paragraph(
             heading: "WHO WE ARE",
@@ -26,24 +28,33 @@ class HomeScreenDesktop extends StatelessWidget {
                   Text(
                     'Explore our',
                     style: TextStyle(
+                      color: Color.fromARGB(255, 231, 231, 231),
                         fontFamily: "ProductSans",
                         fontWeight: FontWeight.w400,
                         height: 0.9,
                         fontSize: 50),
                   ),
-                  SizedBox(
-                      height: 30), // Adds space between the text and button
-                  MyButton(
-                    title: 'Services',
-                    targetScreen: ServicesScreen(),
+                  SizedBox(height: 30), // Adds space between the text and button
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      MyButton(
+                        title: 'Services',
+                        targetScreen: ServicesScreen(),
+                      ),
+                      SizedBox(width: 20), // Space between buttons
+                      LinkedinButton(),
+                    ],
                   ),
+                
                 ],
               ),
             ),
           ),
-      // ChatBotWidget(),
         ],
+        
       ),
     );
   }
 }
+ 

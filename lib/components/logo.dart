@@ -8,7 +8,7 @@ class Logo extends StatelessWidget {
     return SizedBox(
       height: 100,
       width: 300,
-      child: Image.asset("assets/code_charm_logo.png"),
+      child: Image.asset("assets/logo.png"),
     );
   }
 }

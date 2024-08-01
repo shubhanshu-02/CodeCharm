@@ -1,4 +1,4 @@
-import 'package:code_charm/components/custom_appbar.dart';
+import 'package:code_charm/components/heading.dart';
 import 'package:flutter/material.dart';
 
 class TeamScreen extends StatelessWidget {
@@ -6,12 +6,14 @@ class TeamScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: customAppBar(title: 'Team Members'),
-        body: Padding(
-          padding: const EdgeInsets.all(26.0),
+    return Container(
+      height: 500,
+        // appBar: customAppBar(title: 'Team Members'),
+        // Padding(
+          padding: const EdgeInsets.all(46.0),
           child: Column(
             children: [
+              const Heading(title: "Team"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -33,7 +35,6 @@ class TeamScreen extends StatelessWidget {
               // ),
             ],
           ),
-        ),
     );
   }
 

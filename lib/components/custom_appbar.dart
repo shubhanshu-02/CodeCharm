@@ -13,7 +13,6 @@ AppBar customAppBar({
       style: const TextStyle(fontFamily: "ProductSans"),
     ),
     backgroundColor: backgroundColor ?? navColor,
-    elevation: elevation,
     centerTitle: centerTitle,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),

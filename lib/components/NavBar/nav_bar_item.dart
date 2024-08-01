@@ -1,9 +1,10 @@
+import 'package:code_charm/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class NavBarItem extends StatefulWidget {
   final String title;
-  final Widget? targetScreen;
-  const NavBarItem({super.key, required this.title, this.targetScreen});
+  final VoidCallback onPressed;
+  const NavBarItem({super.key, required this.title, required this.onPressed});
 
   @override
   _NavBarItemState createState() => _NavBarItemState();
@@ -15,14 +16,7 @@ class _NavBarItemState extends State<NavBarItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (widget.targetScreen != null) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => widget.targetScreen!),
-          );
-        }
-      },
+      onTap: () { widget.onPressed(); },
       child: MouseRegion(
         onEnter: (event) => _onHover(true),
         onExit: (event) => _onHover(false),
@@ -30,7 +24,7 @@ class _NavBarItemState extends State<NavBarItem> {
           duration: const Duration(milliseconds: 300),
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           decoration: BoxDecoration(
-            color: isHovered ? Colors.white : Colors.indigo[100],
+            color: isHovered ? Colors.white : null,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Text(
@@ -38,7 +32,7 @@ class _NavBarItemState extends State<NavBarItem> {
             style: TextStyle(
               fontFamily: "ProductSans",
               fontSize: 20,
-              color: isHovered ? Colors.indigo[600] : Colors.black,
+              color: isHovered ? primaryColor : Colors.white,
               fontWeight: isHovered ? FontWeight.bold : FontWeight.normal,
             ),
           ),
