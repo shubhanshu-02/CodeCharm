@@ -1,4 +1,9 @@
 *.env
+firebase.json
+.firebaserc
+.firebase
+firebase_options.dart
+index.html
 
 # Miscellaneous
 *.class
@@ -32,6 +37,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/public/
+/node_modules/
 
 # Symbolication related
 app.*.symbols
