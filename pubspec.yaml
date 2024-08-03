@@ -77,6 +77,9 @@ flutter:
   assets:
     - .env
     - assets/logo.png
+    - assets/lakshya.png
+    - assets/dhruv.png
+    - assets/shubh.png
     - assets/linkedin.png
     - assets/LinkedIn_logo.svg
     - assets/1.jpg
