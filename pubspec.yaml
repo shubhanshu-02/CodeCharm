@@ -49,6 +49,7 @@ dependencies:
   crypto: ^3.0.3
   mailer: ^6.1.2
   emailjs: ^1.1.0
+  font_awesome_flutter: ^10.7.0
 
 
 dev_dependencies:
@@ -76,12 +77,22 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
+    - assets/logo.png
     - assets/lakshya.png
     - assets/dhruv.png
     - assets/shubh.png
+    - assets/shubh1.png
     - assets/HS.png
     - assets/SF.png
     - assets/CA.png
+    - assets/DS1.png
+    - assets/MS1.png
+    - assets/DS2.png
+    - assets/MS2.png
+    - assets/DS3.png
+    - assets/MS3.png
+    - assets/DS4.png
+    - assets/MS4.png
     - assets/startup.png
     - assets/linkedin.png
     - assets/LinkedIn_logo.svg
