@@ -11,11 +11,16 @@ class FAQScreen extends StatefulWidget {
 
 class _FAQScreenState extends State<FAQScreen> {
   final List<FAQItem> _faqs = [
-    FAQItem(question: 'Why should I choose 100xDevs?', answer: '100xDevs offers expert instruction and comprehensive materials to help you succeed in remote work, open source, and landing jobs.'),
-    FAQItem(question: 'Who will be teaching me?', answer: 'Learn from the best. Harkirat is the top instructor in India for remote work, open source, and landing jobs.'),
-    FAQItem(question: 'Is 100xDevs suitable for beginners?', answer: 'Yes, 100xDevs is designed to be suitable for beginners with step-by-step guidance and support.'),
-    FAQItem(question: 'Will I get additional course materials than recordings?', answer: 'Yes, you will get additional course materials including notes, assignments, and project resources.'),
-    FAQItem(question: 'What is the refund policy?', answer: 'We offer a full refund within the first 30 days if you are not satisfied with the course.'),
+    FAQItem(question: 'I am a client. How can Code Charm help me with my projects?',
+            answer: 'Code Charm is a development agency focused on delivering tech solutions. We offer comprehensive services covering front-end, back-end, DevOps, and server management.'),
+    FAQItem(question: 'How do I sign up as a freelancer or client on Code Charm?',
+            answer: 'You can reach us out from contact us section or DM us on LinkedIn.'),
+    FAQItem(question: 'What types of projects does Code Charm specialize in?', 
+    answer: 'Code-charm specializes in mobile and web application development and for organisations.'),
+    FAQItem(question: 'Can Code Charm develop Android applications?', 
+    answer: 'Yes we have develop Android applications that scale to thousands of users.'),
+    FAQItem(question: 'Can Code Charm assist with both front-end and back-end development?',
+     answer: 'Code Charm provides comprehensive support and services for every stage of development, including front-end, back-end, DevOps, and server services.'),
   ];
 
   void _toggleExpansion(int index) {
@@ -69,20 +74,20 @@ class FAQTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
-              color: faq.isExpanded ? navColor : Colors.transparent,
+              color: faq.isExpanded ? navColor : const Color.fromARGB(16, 255, 255, 255),
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: ListTile(
               title: Text(
                 faq.question,
-                style: const TextStyle(color: Colors.white, fontSize: 18),
+                style: const TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'ProductSans',),
               ),
               trailing: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
@@ -99,7 +104,7 @@ class FAQTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 faq.answer,
-                style: const TextStyle(color: Colors.grey, fontSize: 16),
+                style: TextStyle(color: Colors.grey[400], fontSize: 18,   fontFamily: 'Charter',),
               ),
             ),
             crossFadeState: faq.isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,

@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:code_charm/components/footer.dart';
 import 'package:code_charm/components/logo.dart';
 import 'package:code_charm/components/nav_bar.dart';
 import 'package:code_charm/constants/colors.dart';
@@ -13,15 +14,14 @@ import 'package:flutter/material.dart';
 import 'package:code_charm/components/centered_view.dart';
 import 'package:code_charm/components/chat_bot_widget.dart';
 
-
-class NewHomeScreen extends StatefulWidget {
-  const NewHomeScreen({super.key});
+class DesktopScreen extends StatefulWidget {
+  const DesktopScreen({super.key});
 
   @override
-  _NewHomeScreenState createState() => _NewHomeScreenState();
+  _DesktopScreenState createState() => _DesktopScreenState();
 }
 
-class _NewHomeScreenState extends State<NewHomeScreen> {
+class _DesktopScreenState extends State<DesktopScreen> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _homeKey = GlobalKey();
   final GlobalKey _servicesKey = GlobalKey();
@@ -42,33 +42,35 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
     }
   }
 
-void _openAuthDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) => BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-      child: Dialog(
-        backgroundColor: const Color.fromARGB(255, 0, 62, 41),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: SizedBox(
-          width: 400,
-          child: AuthScreen(
-            onAuthSuccess: (userName) {
-              setState(() {
-                _userName = userName;
-              });
-              Navigator.of(context).pop();
-            },
+  void _openAuthDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Dialog(
+          backgroundColor: const Color.fromARGB(255, 0, 62, 41),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          child: SizedBox(
+            width: 400,
+            child: AuthScreen(
+              onAuthSuccess: (userName) {
+                setState(() {
+                  _userName = userName;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // drawer:NavDrawer(),
       backgroundColor: bgColor,
       body: Stack(
         children: [
@@ -76,16 +78,21 @@ void _openAuthDialog(BuildContext context) {
             children: [
               Row(
                 children: [
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () => _scrollToSection(_homeKey),
-                      child: const Logo(),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => _scrollToSection(_homeKey),
+                        child: const Logo(),
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 175,),
                   Expanded(
-                    flex: 2,
+                    child: Container(),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
                     child: NavBar(
                       onItemSelected: (index) {
                         switch (index) {
@@ -109,29 +116,39 @@ void _openAuthDialog(BuildContext context) {
                       userName: _userName,
                     ),
                   ),
-                  const Spacer(), 
-                  if (_userName == null)
-                    ElevatedButton(
-                      onPressed: () => _openAuthDialog(context),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(110, 50),
-                        foregroundColor: Colors.white,
-                        backgroundColor: primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        elevation: 5,
-                      ),
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(fontFamily: "ProductSans", fontSize: 22),
-                      ),
-                    )
-                  else
-                    Text(
-                      'Hello, $_userName',
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  // const SizedBox(widthr: 400,),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: _userName == null 
+                        ? ElevatedButton(
+                            onPressed: () => _openAuthDialog(context),
+                            style: ElevatedButton.styleFrom(
+                              fixedSize: const Size(110, 50),
+                              foregroundColor: Colors.white,
+                              backgroundColor: primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              elevation: 5,
+                            ),
+                            child: const Text(
+                              'Login',
+                              style: TextStyle(
+                                  fontFamily: "ProductSans", fontSize: 22),
+                            ),
+                          )
+                        : Text(
+                            'Hello, $_userName',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontFamily: "ProductSans",
+                              fontSize: 18,
+                            ),
+                          ),
+                  ),
                   const SizedBox(width: 20),
                 ],
               ),
@@ -141,14 +158,21 @@ void _openAuthDialog(BuildContext context) {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CenteredView(child: HomeScreenDesktop(key: _homeKey)),
+                      CenteredView(
+                        key: _homeKey,
+                        child: HomeScreen(
+                          onServicesPressed: () =>
+                              _scrollToSection(_servicesKey),
+                        ),
+                      ),
                       const SizedBox(height: 60),
                       ServicesScreen(key: _servicesKey),
                       CenteredView(child: ContactScreen(key: _contactKey)),
-                      
                       CenteredView(child: ClientsScreen(key: _clientKey)),
                       TeamScreen(key: _teamKey),
                       CenteredView(child: FAQScreen(key: _faqKey)),
+                      const SizedBox(height: 40,),
+                      const Footer()
                     ],
                   ),
                 ),

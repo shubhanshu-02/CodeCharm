@@ -8,7 +8,7 @@ class ClientsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 900,
+      height: 800,
       // color: green,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,8 +18,8 @@ class ClientsScreen extends StatelessWidget {
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
-                crossAxisSpacing: 15.0,
-                mainAxisSpacing: 15.0,
+                crossAxisSpacing: 18,
+                mainAxisSpacing: 18,
               ),
               itemCount: 8, // Total number of items in the grid
               itemBuilder: (context, index) {
@@ -27,31 +27,31 @@ class ClientsScreen extends StatelessWidget {
                 switch (index) {
                   case 0: // Position (1,1)
                     return const CustomCard(
-                      image: 'assets/s1.png',
-                      title: 'Client 1',
-                      subtitle: 'Project 1',
+                      image: 'assets/CA.png',
+                      title: 'Sakral Associates',
+                      subtitle: 'Android App',
                       buttonText: 'project link',
                       // url: 'https://www.google.com/',
                     );
                   case 2: // Position (1,3)
                     return const CustomCard(
-                      image: 'assets/4.png',
-                      title: 'Client 2',
-                      subtitle: 'Project 2',
+                      image: 'assets/HS.png',
+                      title: 'Hosting Safari',
+                      subtitle: 'Website',
                       url: 'https://www.gmail.com/',
                     );
                   case 5: // Position (2,2)
                     return const CustomCard(
-                      image: 'assets/4.png',
-                      title: 'Client 3',
-                      subtitle: 'Project 3',
+                      image: 'assets/SF.png',
+                      title: 'Stepp Forward',
+                      subtitle: 'Android App',
                       url: 'https://www.example.com/',
                     );
                   case 7: // Position (2,4)
                     return const CustomCard(
-                      image: 'assets/4.png',
-                      title: 'Client 4',
-                      subtitle: 'Project 4',
+                      image: 'assets/startup.png',
+                      title: 'Several Startups',
+                      subtitle: 'Apps and Websites',
                       url: 'https://www.example.org/',
                     );
                   default:

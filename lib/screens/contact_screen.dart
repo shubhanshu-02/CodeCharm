@@ -16,11 +16,12 @@ class ContactScreen extends StatefulWidget {
 class _ContactScreenState extends State<ContactScreen> {
   late GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(28.716308741818427, 77.1561247218598);
+  final LatLng _center = const LatLng(28.710647582043627, 77.15469456190029);
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -30,10 +31,13 @@ class _ContactScreenState extends State<ContactScreen> {
     String email = _emailController.text;
     String name = _nameController.text;
     String phone = _phoneController.text;
+    String message = _messageController.text;
 
-    if (email.isEmpty || name.isEmpty || phone.isEmpty) {
+    if (email.isEmpty || name.isEmpty || phone.isEmpty || message.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill out all fields',style: TextStyle(fontFamily: "ProductSans"))),
+        const SnackBar(
+            content: Text('Please fill out all fields',
+                style: TextStyle(fontFamily: "ProductSans"))),
       );
       return;
     }
@@ -56,6 +60,7 @@ class _ContactScreenState extends State<ContactScreen> {
           'user_email': email,
           'user_name': name,
           'user_phone': phone,
+          'user_message': message,
         },
       }),
     );
@@ -63,127 +68,125 @@ class _ContactScreenState extends State<ContactScreen> {
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-            content: Text('Contact information submitted successfully',style: TextStyle(fontFamily: "ProductSans"),)),
+            content: Text('Contact information submitted successfully',
+                style: TextStyle(fontFamily: "ProductSans"))),
       );
 
       _emailController.clear();
       _nameController.clear();
       _phoneController.clear();
+      _messageController.clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to submit contact information',style: TextStyle(fontFamily: "ProductSans"))),
+        const SnackBar(
+            content: Text('Failed to submit contact information',
+                style: TextStyle(fontFamily: "ProductSans"))),
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 600,
-        // padding: const EdgeInsets.all(2.0),
-        child: Column(
-          children: [
-            const Heading(title: "Contact Us"),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: GoogleMap(
-                          onMapCreated: _onMapCreated,
-                          initialCameraPosition: CameraPosition(
-                            target: _center,
-                            zoom: 15,
+      height: 600,
+      child: Column(
+        children: [
+          const Heading(title: "Contact Us"),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: GoogleMap(
+                        onMapCreated: _onMapCreated,
+                        initialCameraPosition: CameraPosition(
+                          target: _center,
+                          zoom: 15,
+                        ),
+                        markers: {
+                          Marker(
+                            markerId: const MarkerId('1'),
+                            position: _center,
                           ),
-                          markers: {
-                            const Marker(
-                              markerId: MarkerId('marker_1'),
-                              position:
-                                  LatLng(28.716308741818427, 77.1561247218598),
-                            ),
-                          },
-                        ),
+                        },
                       ),
                     ),
-                    const SizedBox(width: 55),
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            // const Text(
-                            //   "Form",
-                            //   textAlign: TextAlign.center,
-                            //   style: TextStyle(
-                            //     fontFamily: "ProductSans",
-                            //     color: Colors.white,
-                            //     fontSize: 28,
-                            //   ),
-                            // ),
-                            const SizedBox(height: 36),
-                            CustomTextField(
-                              controller: _emailController,
-                              labelText: 'Email',
-                              hintText: 'Enter your email',
-                              col: Colors.black,
-                            ),
-                            const SizedBox(height: 20),
-                            CustomTextField(
-                              controller: _nameController,
-                              labelText: 'Name',
-                              hintText: 'Enter your name',
-                              col: Colors.black,
-                            ),
-                            const SizedBox(height: 20),
-                            CustomTextField(
-                              controller: _phoneController,
-                              labelText: 'Phone',
-                              hintText: 'Enter your phone',
-                              col: Colors.black,
-                            ),
-
-                            const SizedBox(height: 60),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 355.0,
-                              ),
-                              child: ElevatedButton(
-                                onPressed: _submitContactForm,
-                                style: ElevatedButton.styleFrom(
-                                  fixedSize: const Size(100, 60),
-                                  foregroundColor: Colors.white,
-                                  backgroundColor: primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  elevation: 5,
+                  ),
+                  const SizedBox(width: 35),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          // const SizedBox(height: 16),
+                          CustomTextField(
+                            controller: _emailController,
+                            labelText: 'Email',
+                            hintText: 'Enter your email',
+                            col: Colors.black,
+                          ),
+                          const SizedBox(height: 16),
+                          CustomTextField(
+                            controller: _nameController,
+                            labelText: 'Name',
+                            hintText: 'Enter your name',
+                            col: Colors.black,
+                          ),
+                          const SizedBox(height: 16),
+                          CustomTextField(
+                            controller: _phoneController,
+                            labelText: 'Phone',
+                            hintText: 'Enter your phone',
+                            col: Colors.black,
+                          ),
+                          const SizedBox(height: 16),
+                          CustomTextField(
+                            controller: _messageController,
+                            labelText: 'Message',
+                            hintText: 'Enter your message',
+                            col: Colors.black,
+                            height: 80,
+                          ),
+                          const SizedBox(height: 50),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 375.0),
+                            child: ElevatedButton(
+                              onPressed: _submitContactForm,
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: const Size(100, 60),
+                                foregroundColor: Colors.white,
+                                backgroundColor: primaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: const Text(
-                                  'Submit',
-                                  style: TextStyle(
-                                    fontFamily: "ProductSans",
-                                    fontSize: 22,
-                                  ),
+                                elevation: 5,
+                              ),
+                              child: const Text(
+                                'Submit',
+                                style: TextStyle(
+                                  fontFamily: "ProductSans",
+                                  fontSize: 22,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          const SizedBox(height: 30,)
-          ],
-        ),
-      // ),
+          ),
+          const SizedBox(height: 30),
+        ],
+      ),
     );
   }
 }

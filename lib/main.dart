@@ -1,6 +1,8 @@
-import 'package:code_charm/screens/new_home_screen.dart';
+import 'package:code_charm/screens/desktop_screen.dart';
+import 'package:code_charm/screens/mobile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,7 +27,15 @@ class MyApp extends StatelessWidget {
           textTheme: Theme.of(context).textTheme.apply(
                 fontFamily: 'Open Sans',
               )),
-              home: const NewHomeScreen(),
+      home: ResponsiveBuilder(
+        builder: (context, sizingInformation) {
+          if (sizingInformation.isMobile) {
+            return const MobileScreen();
+          } else {
+            return const DesktopScreen();
+          }
+        },
+      ),
     );
   }
 }

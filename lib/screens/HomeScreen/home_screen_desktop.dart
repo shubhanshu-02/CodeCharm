@@ -1,31 +1,31 @@
 import 'package:code_charm/components/Paragraph.dart';
 import 'package:code_charm/components/linkedin_button.dart';
-// import 'package:code_charm/components/chat_bot_widget.dart';
 import 'package:code_charm/components/my_button.dart';
-import 'package:code_charm/screens/services_screen.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreenDesktop extends StatelessWidget {
-  const HomeScreenDesktop({super.key});
+class HomeScreen extends StatelessWidget {
+  final VoidCallback onServicesPressed;
+
+  const HomeScreen({super.key, required this.onServicesPressed});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 600,
       padding: const EdgeInsets.only(left: 60.0),
-      child: const Row(
+      child: Row(
         children: [
-          Paragraph(
-            heading: "WHO WE ARE",
+          const Paragraph(
+            heading: "WHO ARE WE",
             details:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",
+                "We are a Development firm who brings your imagination to reality. We develop websites and Mobile applications that scale to 3-4k+ users. Wanna discuss your idea ? Reach us out... ",
           ),
           Expanded(
             child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
+                  const Text(
                     'Explore our',
                     style: TextStyle(
                       color: Color.fromARGB(255, 231, 231, 231),
@@ -34,19 +34,18 @@ class HomeScreenDesktop extends StatelessWidget {
                         height: 0.9,
                         fontSize: 50),
                   ),
-                  SizedBox(height: 30), // Adds space between the text and button
+                  const SizedBox(height: 30), // Adds space between the text and button
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       MyButton(
                         title: 'Services',
-                        targetScreen: ServicesScreen(),
+                        onPressed: onServicesPressed,
                       ),
-                      SizedBox(width: 20), // Space between buttons
-                      LinkedinButton(),
+                      const SizedBox(width: 20), 
+                      const LinkedinButton(),
                     ],
                   ),
-                
                 ],
               ),
             ),

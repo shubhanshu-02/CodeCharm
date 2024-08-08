@@ -117,8 +117,10 @@ class _AuthScreenState extends State<AuthScreen> {
               controller: _passwordController,
               // decoration: const InputDecoration(
                 labelText: 'Password',
+                obscureText: true,
+
               // ),
-              obscureText: true,
+              // obscureText: true,
             ),
             if (!_isLogin)
               const SizedBox(height: 10),
