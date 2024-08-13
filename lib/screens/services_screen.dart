@@ -1,7 +1,6 @@
 import 'package:code_charm/components/heading.dart';
 import 'package:code_charm/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ServicesScreen extends StatefulWidget {
@@ -12,8 +11,10 @@ class ServicesScreen extends StatefulWidget {
 }
 
 class _ServicesScreenState extends State<ServicesScreen> {
-  final PageController _pageController =
-      PageController(initialPage: 500, viewportFraction: 0.5); // Adjust viewportFraction for 4 images
+  final PageController _pageController = PageController(
+    initialPage: 500,
+    viewportFraction: 0.5,
+  );
   int _currentPage = 500;
 
   @override
@@ -46,40 +47,72 @@ class _ServicesScreenState extends State<ServicesScreen> {
     );
   }
 
-  Future<void> _onCardTap(String url, int index) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   Widget _buildServiceCard(
-      String imagePath, double scale, String url, int index, bool shouldOpenUrl) {
+    String imagePath,
+    String text,
+    double scale,
+    int index,
+    bool isMobile,
+  ) {
     bool isFocused = (_currentPage == index);
+    bool isHovered = false;
 
-    return Transform.scale(
-      scale: scale,
-      child: MouseRegion(
-        cursor: isFocused ? SystemMouseCursors.click : SystemMouseCursors.basic,
-        child: GestureDetector(
-          onTap: () {
-            if (shouldOpenUrl) {
-              _onCardTap(url, index);
-            }
-          },
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 4.0), // Adjust margin for 4 images
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              image: DecorationImage(
-                image: AssetImage(imagePath),
-                fit: BoxFit.cover,
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return Transform.scale(
+          scale: scale,
+          child: Stack(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: DecorationImage(
+                    image: AssetImage(imagePath),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+              if (isFocused)
+                AnimatedOpacity(
+                  opacity: !isMobile ? (isHovered ? 1.0 : 0.0) : 1.0,
+                  duration: const Duration(milliseconds: 200),
+                  child: Align(
+                    alignment: isMobile ? Alignment.bottomCenter : Alignment.center,
+                    child: Container(
+                      padding: isMobile ? const EdgeInsets.all(10.0) : const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: isMobile ? Colors.black.withOpacity(0.4) : Colors.black.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        text,
+                        style: TextStyle(
+                          color: primaryColor,
+                          fontSize: isMobile ? 28 : 55,
+                          fontFamily: 'ProductSans',
+                          fontWeight: FontWeight.bold,
+                          shadows: const [
+                            Shadow(color: Colors.white, offset: Offset(2, 2), blurRadius: 3),
+                            Shadow(color: Colors.black, offset: Offset(-2, 2), blurRadius: 3),
+                          ],
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              if (!isMobile)
+                MouseRegion(
+                  cursor: isFocused ? SystemMouseCursors.click : SystemMouseCursors.basic,
+                  onEnter: (_) => setState(() => isHovered = true),
+                  onExit: (_) => setState(() => isHovered = false),
+                  child: const SizedBox.expand(), // Ensures the hover effect covers the card
+                ),
+            ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -89,21 +122,22 @@ class _ServicesScreenState extends State<ServicesScreen> {
       builder: (context, sizingInformation) {
         bool isMobile = sizingInformation.isMobile;
 
-        List<String> imagePaths = isMobile
-            ? ['assets/MS1.png', 'assets/MS2.png', 'assets/MS3.png', 'assets/MS4.png']
-            : ['assets/DS1.png', 'assets/DS2.png', 'assets/DS3.png', 'assets/DS4.png'];
-
-        List<String> urls = [
-          'https://www.google.com',
-          'https://www.example.com',
-          'https://www.flutter.dev',
-          'https://www.github.com',
+        List<String> imagePaths = [
+          'assets/s1.png',
+          'assets/s2.png',
+          'assets/s3.png',
+          'assets/s4.png'
         ];
 
-        bool enableUrlRedirection = false; // Set this based on your logic
+        List<String> texts = [
+          'Mobile App\nDevelopment',
+          'Web\nDevelopment',
+          'Technical\nDocumentation',
+          'Blockchain\nSolana Ethereum',
+        ];
 
         return SizedBox(
-          height: 700,
+          height: isMobile ? 500 : 700,
           child: Column(
             children: [
               const Heading(title: "Services"),
@@ -114,38 +148,59 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       controller: _pageController,
                       itemBuilder: (context, index) {
                         int realIndex = index % imagePaths.length;
-                        double scale = (_currentPage == index) ? 1.0 : 0.8; // Adjust scale for side items
+                        double scale = (_currentPage == index) ? 1.0 : 0.8;
 
                         return _buildServiceCard(
-                            imagePaths[realIndex], scale, urls[realIndex], index, enableUrlRedirection);
+                          imagePaths[realIndex],
+                          texts[realIndex],
+                          scale,
+                          index,
+                          isMobile,
+                        );
                       },
                     ),
-                    Positioned(
-                      left: 10,
-                      top: MediaQuery.of(context).size.height / 2 - 40,
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                    if (!isMobile)
+                      Positioned(
+                        left: 10,
+                        top: 250,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                            onPressed: _previousPage,
+                          ),
                         ),
-                        onPressed: _previousPage,
                       ),
-                    ),
-                    Positioned(
-                      right: 10,
-                      top: MediaQuery.of(context).size.height / 2 - 40,
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
+                    if (!isMobile)
+                      Positioned(
+                        right: 10,
+                        top: 250,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
+                            onPressed: _nextPage,
+                          ),
                         ),
-                        onPressed: _nextPage,
                       ),
-                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(imagePaths.length, (index) {
@@ -155,7 +210,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     height: _currentPage % imagePaths.length == index ? 12.0 : 8.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: _currentPage % imagePaths.length == index ? primaryColor : Colors.grey,
+                      color: _currentPage % imagePaths.length == index
+                          ? primaryColor
+                          : Colors.grey,
                     ),
                   );
                 }),

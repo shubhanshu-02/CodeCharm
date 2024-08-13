@@ -368,6 +368,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  marquee_list:
+    dependency: "direct main"
+    description:
+      name: marquee_list
+      sha256: "786ee8764d9f9f8683519f0221eac6d09c7f2a6309d98df848b53135151192f3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   matcher:
     dependency: transitive
     description:
@@ -384,6 +392,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.1"
+  material_design_icons_flutter:
+    dependency: "direct main"
+    description:
+      name: material_design_icons_flutter
+      sha256: "8c54c21cf336052193559abc64715e4885d6c9220a6dbdfc561a087266cc5385"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.6996"
   meta:
     dependency: transitive
     description:

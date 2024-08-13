@@ -1,15 +1,32 @@
 import 'package:code_charm/components/heading.dart';
-import 'package:flutter/material.dart';
 import 'package:code_charm/components/custom_card.dart';
+// import 'package:code_charm/screens/clients_screen_mobile.dart';
+import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:marquee_list/marquee_list.dart';
 
 class ClientsScreen extends StatelessWidget {
   const ClientsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      if (sizingInformation.isMobile) {
+        return const ClientsScreenMobile();
+      } else {
+        return const ClientsScreenDesktop();
+      }
+    });
+  }
+}
+
+class ClientsScreenDesktop extends StatelessWidget {
+  const ClientsScreenDesktop({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       height: 800,
-      // color: green,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,27 +55,77 @@ class ClientsScreen extends StatelessWidget {
                       image: 'assets/HS.png',
                       title: 'Hosting Safari',
                       subtitle: 'Website',
-                      url: 'https://www.gmail.com/',
+                    //  url: 'https://www.gmail.com/',
                     );
                   case 5: // Position (2,2)
                     return const CustomCard(
                       image: 'assets/SF.png',
                       title: 'Stepp Forward',
                       subtitle: 'Android App',
-                      url: 'https://www.example.com/',
+                      // url: 'https://www.example.com/',
                     );
                   case 7: // Position (2,4)
                     return const CustomCard(
                       image: 'assets/startup.png',
                       title: 'Several Startups',
                       subtitle: 'Apps and Websites',
-                      url: 'https://www.example.org/',
+                      // url: 'https://www.example.org/',
                     );
                   default:
-                    return const SizedBox.shrink(); // Empty space for other cells
+                    return const SizedBox
+                        .shrink(); // Empty space for other cells
                 }
               },
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ClientsScreenMobile extends StatelessWidget {
+  const ClientsScreenMobile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 500,
+      padding: const EdgeInsets.all(10),
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Heading(title: "Our Clients"),
+          MarqueeList(
+            scrollDirection: Axis.horizontal,
+            scrollDuration: Duration(milliseconds: 1200),
+            children: [
+              CustomCard(
+                image: 'assets/CA.png',
+                title: 'Sakral Associates',
+                subtitle: 'Android App',
+                isMobile: true,
+              ),
+
+              CustomCard(
+                image: 'assets/HS.png',
+                title: 'Hosting Safari',
+                subtitle: 'Website',
+                isMobile: true,
+              ),
+              CustomCard(
+                image: 'assets/SF.png',
+                title: 'Stepp Forward',
+                subtitle: 'Android App',
+                isMobile: true,
+              ),
+              CustomCard(
+                image: 'assets/startup.png',
+                title: 'Several Startups',
+                subtitle: 'Apps and Websites',
+                isMobile: true,
+              ),
+            ],
           ),
         ],
       ),

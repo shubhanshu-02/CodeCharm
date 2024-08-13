@@ -1,18 +1,35 @@
+import 'package:code_charm/screens/team_screen_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:code_charm/components/heading.dart';
 import 'package:code_charm/constants/colors.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class TeamScreen extends StatelessWidget {
   const TeamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return ResponsiveBuilder(builder: (context, sizingInformation) {
+      if (sizingInformation.isMobile) {
+        return const TeamScreenMobile();
+      } else {
+        return const TeamScreenDesktop();
+      }
+    });
+  }
+}
+
+class TeamScreenDesktop extends StatelessWidget {
+  const TeamScreenDesktop({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       height: 650,
       padding: const EdgeInsets.all(50.0),
-      child: Column(
+      child: const Column(
         children: [
-          const Heading(title: "Team"),
+          Heading(title: "Team"),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -20,12 +37,12 @@ class TeamScreen extends StatelessWidget {
                   imagePath: 'assets/shubh.png', 
                   name: 'Shubhanshu', 
                   role: 'Web/App Developer'),
-              const SizedBox(width: 45),
+              SizedBox(width: 45),
               TeamMember(
                   imagePath: 'assets/dhruv.png', 
                   name: 'Dhruv', 
                   role: 'Chief Executive Head'),
-              const SizedBox(width: 45),
+              SizedBox(width: 45),
               TeamMember(
                   imagePath: 'assets/lakshya.png', 
                   name: 'Lakshya', 

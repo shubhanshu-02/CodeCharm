@@ -6,17 +6,19 @@ class Heading extends StatelessWidget {
   const Heading({super.key, required this.title});
   @override
   Widget build(BuildContext context) {
+        Color textColor = bgColor == const Color.fromARGB(255, 255, 255, 255) ? primaryColor : Colors.white;
+
     return Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30),
+          padding: const EdgeInsets.symmetric(vertical: 25),
           child: Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 28,
               fontFamily: "ProductSans",
               // fontWeight: FontWeight.bold,
-              color: Colors.white,
-              shadows: [
+              color: textColor,
+              shadows: const [
                 Shadow(
                   // offset: Offset(0, 2),
                   blurRadius: 2.0,

@@ -44,7 +44,7 @@ class ProductScreenDesktop extends StatelessWidget {
                   //   ), //BoxShadow
                   ],
           ),
-          child: Image.asset(productImage, fit: BoxFit.cover),
+          child: ClipRRect(borderRadius: BorderRadius.circular(6),child: Image.asset(productImage, fit: BoxFit.cover)),
         ),
         const SizedBox(width: 20),
         Expanded(

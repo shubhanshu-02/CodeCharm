@@ -16,9 +16,9 @@ class _FAQScreenState extends State<FAQScreen> {
     FAQItem(question: 'How do I sign up as a freelancer or client on Code Charm?',
             answer: 'You can reach us out from contact us section or DM us on LinkedIn.'),
     FAQItem(question: 'What types of projects does Code Charm specialize in?', 
-    answer: 'Code-charm specializes in mobile and web application development and for organisations.'),
+    answer: 'Code-charm specializes in mobile and web application development for organisations.'),
     FAQItem(question: 'Can Code Charm develop Android applications?', 
-    answer: 'Yes we have develop Android applications that scale to thousands of users.'),
+    answer: 'Yes we have developed Android applications that scale to thousands of users.'),
     FAQItem(question: 'Can Code Charm assist with both front-end and back-end development?',
      answer: 'Code Charm provides comprehensive support and services for every stage of development, including front-end, back-end, DevOps, and server services.'),
   ];

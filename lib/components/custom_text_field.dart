@@ -10,7 +10,8 @@ class CustomTextField extends StatelessWidget {
   final Color? col;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
-  
+  final double? height;
+
   const CustomTextField({
     super.key,
     required this.controller,
@@ -21,17 +22,21 @@ class CustomTextField extends StatelessWidget {
     this.textStyle,
     this.col,
     this.hintStyle,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
-    final Color color = col??bgColor;
+    final Color color = col ?? bgColor;
     return TextField(
-      
+      maxLines: obscureText ? 1 : null, // Obscured fields should not be multiline.
+      keyboardType: obscureText ? TextInputType.text : keyboardType,
       controller: controller,
       obscureText: obscureText,
-      keyboardType: keyboardType,
       decoration: InputDecoration(
+        contentPadding: height != null
+            ? EdgeInsets.only(bottom: height!, left: 10, right: 10)
+            : const EdgeInsets.symmetric(horizontal: 10),
         labelText: labelText,
         labelStyle: const TextStyle(
           color: Color.fromARGB(255, 232, 245, 233),
@@ -39,10 +44,11 @@ class CustomTextField extends StatelessWidget {
           fontSize: 16,
         ),
         hintText: hintText,
-        hintStyle: hintStyle ?? TextStyle(
-          color: Colors.grey[400],
-          fontFamily: 'ProductSans',
-        ),
+        hintStyle: hintStyle ??
+            TextStyle(
+              color: Colors.grey[400],
+              fontFamily: 'ProductSans',
+            ),
         border: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.green),
         ),
@@ -55,10 +61,11 @@ class CustomTextField extends StatelessWidget {
         fillColor: color,
         filled: true,
       ),
-      style: textStyle ?? const TextStyle(
-        color: Colors.white,
-        fontFamily: 'ProductSans', // Apply the font family here
-      ),
+      style: textStyle ??
+          const TextStyle(
+            color: Colors.white,
+            fontFamily: 'ProductSans', // Apply the font family here
+          ),
     );
   }
 }

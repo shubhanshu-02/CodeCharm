@@ -1,3 +1,4 @@
+import 'package:code_charm/constants/colors.dart';
 import 'package:code_charm/screens/ProductScreen/product_screen_desktop.dart';
 import 'package:code_charm/screens/ProductScreen/product_screen_mobile.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       appBar: customAppBar(title: 'Product Page'),
       body: CenteredView(
         child: Padding(

@@ -1,46 +1,44 @@
-import 'package:code_charm/components/navDrawer/nav_drawer_header.dart';
 import 'package:code_charm/components/navDrawer/nav_drawer_item.dart';
-import 'package:code_charm/screens/clients_screen.dart';
-import 'package:code_charm/screens/contact_screen.dart';
-import 'package:code_charm/screens/ProductScreen/product_screen.dart';
-import 'package:code_charm/screens/team_screen.dart';
+// import 'package:code_charm/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class NavDrawer extends StatelessWidget {
-  const NavDrawer ({super.key});
+  final Function(int) onItemSelected;
+
+  const NavDrawer({super.key, required this.onItemSelected});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: const Color.fromARGB(255, 0, 62, 41),
       child: ListView(
         padding: EdgeInsets.zero,
-        children:  const [
-          NavDrawerHeader(),
-          SizedBox(height: 5),
+        children: [
+          // const NavDrawerHeader(),
+          const SizedBox(height: 10),
           NavDrawerItem(
-            title: 'Products',
-            targetScreen: ProductScreen(
-              productImage: 'assets/sakral.png',
-              productDetail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ",
-              productName: 'Sakral Associates',
-              googlePlayLink: 'https://play.google.com/store/apps/details?id=com.tanxe.sakral_ca&hl=en',
-              figmaLink: 'https://www.figma.com/',
-            ),
+            title: 'Home',
+            onPressed: () => onItemSelected(1),
           ),
-          SizedBox(height: 5),
           NavDrawerItem(
-            title: 'Clients',
-            targetScreen: ClientsScreen(),
+            title: 'Services',
+            onPressed: () => onItemSelected(2),
           ),
-          SizedBox(height: 5),
-          NavDrawerItem(
-            title: 'Team',
-            targetScreen: TeamScreen(),
-          ),
-          SizedBox(height: 5),
           NavDrawerItem(
             title: 'Contact us',
-            targetScreen: ContactScreen(),
+            onPressed: () => onItemSelected(3),
+          ),
+          NavDrawerItem(
+            title: 'Our Clients',
+            onPressed: () => onItemSelected(4),
+          ),
+          NavDrawerItem(
+            title: 'Team',
+            onPressed: () => onItemSelected(5),
+          ),
+          NavDrawerItem(
+            title: 'FAQ',
+            onPressed: () => onItemSelected(6),
           ),
         ],
       ),

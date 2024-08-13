@@ -10,7 +10,7 @@ AppBar customAppBar({
   return AppBar(
     title: Text(
       title,
-      style: const TextStyle(fontFamily: "ProductSans"),
+      style: const TextStyle(fontFamily: "ProductSans", color: Colors.white),
     ),
     backgroundColor: backgroundColor ?? navColor,
     centerTitle: centerTitle,

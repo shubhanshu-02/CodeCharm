@@ -7,11 +7,12 @@ class NavDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const DrawerHeader(
+      
       decoration: BoxDecoration(
-          color: primaryColor,
+          color: blue,
           image: DecorationImage(
-            image: AssetImage("assets/3.png"),
-            fit: BoxFit.cover,
+            image: AssetImage("assets/logo.png"),
+            fit: BoxFit.fitWidth,
           )),
       child: null, 
       // Padding(

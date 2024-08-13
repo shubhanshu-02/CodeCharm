@@ -6,7 +6,7 @@ import 'package:code_charm/constants/colors.dart';
 import 'package:code_charm/screens/HomeScreen/home_screen_desktop.dart';
 import 'package:code_charm/screens/auth_screen.dart';
 import 'package:code_charm/screens/clients_screen.dart';
-import 'package:code_charm/screens/contact_screen.dart';
+import 'package:code_charm/screens/contactScreen/contact_screen.dart';
 import 'package:code_charm/screens/faq_screen.dart';
 import 'package:code_charm/screens/services_screen.dart';
 import 'package:code_charm/screens/team_screen.dart';

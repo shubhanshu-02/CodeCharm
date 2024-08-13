@@ -20,7 +20,7 @@ class Paragraph extends StatelessWidget {
               : CrossAxisAlignment.center;
       double titleSize =
           sizingInformation.deviceScreenType == DeviceScreenType.mobile
-              ? 50
+              ? 45
               : 80;
       double descriptionSize =
           sizingInformation.deviceScreenType == DeviceScreenType.mobile

@@ -50,6 +50,9 @@ dependencies:
   mailer: ^6.1.2
   emailjs: ^1.1.0
   font_awesome_flutter: ^10.7.0
+  material_design_icons_flutter: ^5.0.0
+  marquee_list: ^1.0.0
+
 
 
 dev_dependencies:
@@ -78,6 +81,7 @@ flutter:
   assets:
     - .env
     - assets/logo.png
+    - assets/logo_text.png
     - assets/lakshya.png
     - assets/dhruv.png
     - assets/shubh.png
@@ -85,13 +89,13 @@ flutter:
     - assets/HS.png
     - assets/SF.png
     - assets/CA.png
-    - assets/DS1.png
+    - assets/s1.png
+    - assets/s2.png
+    - assets/s3.png
+    - assets/s4.png
     - assets/MS1.png
-    - assets/DS2.png
     - assets/MS2.png
-    - assets/DS3.png
     - assets/MS3.png
-    - assets/DS4.png
     - assets/MS4.png
     - assets/startup.png
     - assets/linkedin.png
@@ -102,6 +106,7 @@ flutter:
     - assets/4.png
     - assets/sakral.png
     - assets/code_charm.png
+    - assets/code_charm1.png
     - assets/code_charm_logo.png
     - assets/code_charm.webp
   #   - images/a_dot_ham.jpeg

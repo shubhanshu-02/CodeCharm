@@ -1,13 +1,15 @@
-// file: lib/screens/mobile_screen.dart
-// import 'package:code_charm/components/logo.dart';
 import 'dart:ui';
 
+import 'package:code_charm/components/footer_mobile.dart';
 import 'package:code_charm/components/navDrawer/nav_drawer.dart';
 import 'package:code_charm/constants/colors.dart';
 import 'package:code_charm/screens/HomeScreen/home_screen_mobile.dart';
 import 'package:code_charm/screens/auth_screen.dart';
+import 'package:code_charm/screens/clients_screen.dart';
+import 'package:code_charm/screens/contactScreen/contact_screen.dart';
 import 'package:code_charm/screens/faq_screen.dart';
 import 'package:code_charm/screens/services_screen.dart';
+import 'package:code_charm/screens/team_screen.dart';
 import 'package:flutter/material.dart';
 
 class MobileScreen extends StatefulWidget {
@@ -94,30 +96,37 @@ class _MobileScreenState extends State<MobileScreen> {
       appBar: AppBar(
         backgroundColor: navColor,
         centerTitle: true,
-        title: SizedBox(
-          height: 100,
-          width: 200,
-          child: Image.asset("assets/logo.png"),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: SizedBox(
+            height: 100,
+            width: 200,
+            child: Image.asset("assets/logo_text.png"),
+          ),
         ),
         actions: [
           _userName == null
-              ? ElevatedButton(
-                  onPressed: () => _openAuthDialog(context),
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(80, 35),
-                    foregroundColor: Colors.white,
-                    backgroundColor: primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
+              ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                    onPressed: () => _openAuthDialog(context),
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(80, 35),
+                      foregroundColor: Colors.white,
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      elevation: 5,
+                      padding: EdgeInsets.zero,
                     ),
-                    elevation: 5,
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(fontFamily: "ProductSans", fontSize: 16),
+                    ),
+                    // SizedBox(width: 20,),
                   ),
-                  child: const Text(
-                    // textAlign: Ali
-                    'Login',
-                    style: TextStyle(fontFamily: "ProductSans", fontSize: 12),
-                  ),
-                )
+              )
               : Text(
                   'Hello, $_userName',
                   style: const TextStyle(
@@ -129,6 +138,8 @@ class _MobileScreenState extends State<MobileScreen> {
         ],
         iconTheme: const IconThemeData(color: Colors.white),
       ),
+
+
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Column(
@@ -139,7 +150,15 @@ class _MobileScreenState extends State<MobileScreen> {
               onServicesPressed: () => _scrollToSection(_servicesKey),
             ),
             ServicesScreen(key: _servicesKey),
-            FAQScreen(key: _faqKey),
+            ContactScreen(key: _contactKey),
+            ClientsScreen(key: _clientKey),
+            TeamScreen(key: _teamKey),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: FAQScreen(key: _faqKey),
+            ),
+            const SizedBox(height: 30,),
+            const FooterMobile(),
           ],
         ),
       ),

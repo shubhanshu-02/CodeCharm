@@ -1,5 +1,4 @@
 import 'package:code_charm/components/Paragraph.dart';
-import 'package:code_charm/components/linkedin_button.dart';
 import 'package:code_charm/components/my_button.dart';
 import 'package:code_charm/components/new_linkedin_button.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +11,14 @@ class HomeScreenMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 700,
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 130),
+      height: 600,
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Center(child: Image.asset("assets/code_charm1.png", height: 150,)),
+          const SizedBox(height: 50,),
           const Paragraph(
             heading: "WHO ARE WE",
             details: "We are a Development firm who brings your imagination to reality. We develop websites and Mobile applications that scale to 3-4k+ users. Wanna discuss your idea? Reach us out...",
